@@ -28,7 +28,7 @@ jobs:
 
       # 4️⃣ Run build
       - name: Build project
-        run: npm run build --if-present --no-lint
+        run: npm run build
 
       # 5️⃣ Run lint (optional)
       - name: Run ESLint
