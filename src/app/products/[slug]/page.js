@@ -8,15 +8,7 @@ import { FaChevronRight } from "react-icons/fa6"
 import products from "@/data/products"
 
 export default function ProductDetail({ params }) {
-  const product = products.find((p) => p.key === params.slug)
-  if (!product) return notFound()
-
-  // Pick 3 related products excluding current
-  const related = products
-    .filter((p) => p.key !== product.key)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3)
-
+  // ✅ Hooks must always run first
   const [showSticky, setShowSticky] = useState(false)
 
   useEffect(() => {
@@ -25,7 +17,17 @@ export default function ProductDetail({ params }) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // ✅ Structured Data for SEO (Google Rich Results)
+  // ✅ Lookup product after hooks
+  const product = products.find((p) => p.key === params.slug)
+  if (!product) return notFound()
+
+  // ✅ Related products
+  const related = products
+    .filter((p) => p.key !== product.key)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3)
+
+  // ✅ Structured Data
   const structuredData = {
     "@context": "https://schema.org/",
     "@type": "Product",
