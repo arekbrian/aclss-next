@@ -231,7 +231,7 @@ export default function AboutPage() {
                 className="keen-slider__slide flex flex-col justify-center items-center bg-blue-50 p-8 rounded-xl shadow min-h-[220px]"
               >
                 <p className="italic text-slate-700 max-w-2xl leading-relaxed">
-                  "{testimonial.text}"
+                  {testimonial.text}
                 </p>
                 <h4 className="mt-4 font-semibold text-blue-700">
                   {testimonial.author}
