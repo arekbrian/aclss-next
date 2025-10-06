@@ -7,10 +7,12 @@ const products = [
     image: "/smart-home/smart.jpg",
     category: "smart-homes",
     details: [
-      "Touch-sensitive glass panels for premium look & feel",
-      "Fully compatible with KNX automation systems",
-      "Customizable LED indicators with multiple colors",
-      "Durable build with multiple design finishes",
+      "Seamless integration with leading automation platforms",
+      "Intuitive control via mobile app and voice assistants",
+      "AI-powered automation for lighting, comfort, and security",
+      "Energy-efficient operation with smart scheduling features",
+      "Scalable solutions for apartments, villas, and offices",
+      "Secure connectivity with encrypted communication",
     ],
     button: {
       href: "/smart-home",
