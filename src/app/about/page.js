@@ -183,7 +183,7 @@ export default function AboutPage() {
               { src: "/knx-logo.png", alt: "KNX Partner" },
               { src: "/itc-logo.jpg", alt: "ITC Partner" },
               { src: "/hikvision-logo.png", alt: "HikVision Partner" },
-              { src: "/partner3.png", alt: "Partner 3" },
+              { src: "/sunricher-partner.png", alt: "Sunricher Partner " },
             ].map((partner, idx) => (
               <motion.div
                 key={idx}
