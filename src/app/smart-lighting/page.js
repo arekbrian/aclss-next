@@ -208,7 +208,7 @@ export default function SmartLightingPage() {
             <br />
             Let the light and shadow move with your heart.
           </p>
-          <h2 className="text-blue-700 font-semibold text-xl mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
             K-BUS Smart Lighting System
           </h2>
 
