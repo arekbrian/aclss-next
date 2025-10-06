@@ -266,7 +266,7 @@ export default function ServicesPage() {
           <motion.a
             href="https://wa.me/254713588308"
             target="_blank"
-            className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-600 transition"
+            className="bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-600 transition"
             animate={{ scale: [1, 1.08, 1] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
