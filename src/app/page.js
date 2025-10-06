@@ -172,12 +172,12 @@ export default function Home() {
               className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer"
             >
               <FaHome className="text-5xl text-blue-600 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold mb-2">Smart Home</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Smart Home</h3>
               <p className="text-gray-600 mb-4">
                 Providing highly stable smart home systems specifically designed
                 for high-end residences and commercial spaces.
               </p>
-              <Link href="/services" className="text-blue-600 font-medium hover:underline">
+              <Link href="/smart-home" className="text-blue-600 font-medium hover:underline">
                 Learn More →
               </Link>
             </motion.div>
@@ -188,7 +188,7 @@ export default function Home() {
               className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer"
             >
               <FaLightbulb className="text-5xl text-blue-600 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold mb-2">Smart Lighting</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Smart Lighting</h3>
               <p className="text-gray-600 mb-4">
                 Achieving intelligent and efficient control of lighting through the
                 K-BUS smart control system, delivering an energy-saving,
@@ -205,7 +205,7 @@ export default function Home() {
               className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer"
             >
               <FaVideo className="text-5xl text-blue-600 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold mb-2">Smart Video Intercoms</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">Smart Video Intercoms</h3>
               <p className="text-gray-600 mb-4">
                 Customized solutions for analog and digital intercom systems with
                 high performance and cost-effectiveness backed by a diverse product
