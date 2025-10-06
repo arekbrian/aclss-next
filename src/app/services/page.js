@@ -264,7 +264,7 @@ export default function ServicesPage() {
             📩 Contact Us
           </a>
           <motion.a
-            href="https://wa.me/254700000000"
+            href="https://wa.me/254713588308"
             target="_blank"
             className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-600 transition"
             animate={{ scale: [1, 1.08, 1] }}
