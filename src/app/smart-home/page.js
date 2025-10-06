@@ -168,7 +168,7 @@ export default function ServicesPage() {
                   whileHover={{ scale: 1.05 }}
                   className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center"
                 >
-                  Request Demo →
+                  {/* Request Demo → */}
                 </motion.a>
               </div>
             </motion.div>
