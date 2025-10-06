@@ -23,68 +23,55 @@ function Counter({ from = 0, to, duration = 2 }) {
 ------------------------- */
 const services = [
   {
-    key: "smart-home",
-    title: "Smart Home",
+    key: "face-recognition",
+    title: "Face Recognition",
     short:
       "Highly stable smart home systems for high-end residences and commercial spaces.",
-    image: "/services/smart-home.jpg",
+    image: "/smart-home/face-recognition.jpg",
   },
+
   {
-    key: "smart-lighting",
-    title: "Smart Lighting",
+    key: "induction-control",
+    title: "Induction Control",
     short:
-      "Intelligent K-BUS lighting control providing energy-saving and customizable solutions.",
-    image: "/services/smart-lighting.jpg",
+      "Highly stable smart home systems for high-end residences and commercial spaces.",
+    image: "/smart-home/induction-control.jpg",
   },
+
   {
-    key: "smart-video",
-    title: "Smart Video Intercoms",
+    key: "app-control",
+    title: "App Control",
     short:
-      "Customized analog & digital intercom solutions ensuring cost-effectiveness and high performance.",
-    image: "/services/smart-intercom.jpg",
+      "Highly stable smart home systems for high-end residences and commercial spaces.",
+    image: "/smart-home/app-control.jpg",
   },
+ 
   {
-    key: "smart-curtains",
-    title: "Smart Curtains",
+    key: "voice-control",
+    title: "Voice Control",
     short:
-      "Classy curtain automation for double volumes and high ceilings. Works with Alexa, Google, Tuya and wireless control.",
-    image: "/services/smart-curtains.jpg",
+      "Highly stable smart home systems for high-end residences and commercial spaces.",
+    image: "/smart-home/voice-control.jpg",
   },
+
   {
-    key: "hvac",
-    title: "HVAC Systems",
+    key: "key-control",
+    title: "Key Control",
     short:
-      "Heating, Ventilation, and Air Conditioning systems for full home comfort, air quality, and humidity control.",
-    image: "/services/hvac.jpg",
+      "Highly stable smart home systems for high-end residences and commercial spaces.",
+    image: "/smart-home/key-control.png",
   },
+  
   {
-    key: "access-control",
-    title: "Access Control",
+    key: "screen-touch-control",
+    title: "Screen Touch Control",
     short:
-      "Manage access to buildings, rooms, and assets with identity-based customized security levels.",
-    image: "/services/access-control.jpg",
+      "Highly stable smart home systems for high-end residences and commercial spaces.",
+    image: "/smart-home/screen-touch-control.webp",
   },
-  {
-    key: "integrated-security",
-    title: "Integrated Security Systems",
-    short:
-      "Centralized platform integrating alarms, access, and video surveillance for enhanced protection.",
-    image: "/services/integrated-security.jpg",
-  },
-  {
-    key: "smart-music",
-    title: "Smart Music Automation",
-    short:
-      "Handsfree music automation to integrate with your lifestyle, ensuring your home always has the perfect soundtrack.",
-    image: "/services/smart-music.jpg",
-  },
-  {
-    key: "support",
-    title: "Support & Consulting",
-    short:
-      "Business consulting, mentorship programs, and funding support to help businesses thrive.",
-    image: "/services/support.jpg",
-  },
+ 
+
+
 ]
 
 /* -------------------------
@@ -93,7 +80,7 @@ const services = [
 const faqs = [
   {
     q: "Are your systems compatible with Alexa & Google Home?",
-    a: "Yes ✅, our automation systems integrate seamlessly with Alexa, Google Assistant, and Tuya platforms.",
+    a: "Yes, our automation systems integrate seamlessly with Alexa, Google Assistant, and Tuya platforms.",
   },
   {
     q: "How much does smart home automation cost?",
@@ -161,15 +148,7 @@ export default function ServicesPage() {
               <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold text-blue-700 mb-3">
                   {service.title}
-                </h3>
-                <p className="text-slate-700 flex-1">{service.short}</p>
-                <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center"
-                >
-                  {/* Request Demo → */}
-                </motion.a>
+                </h3>                
               </div>
             </motion.div>
           ))}

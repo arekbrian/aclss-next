@@ -93,7 +93,7 @@ const services = [
 const faqs = [
   {
     q: "Are your systems compatible with Alexa & Google Home?",
-    a: "Yes ✅, our automation systems integrate seamlessly with Alexa, Google Assistant, and Tuya platforms.",
+    a: "Yes, our automation systems integrate seamlessly with Alexa, Google Assistant, and Tuya platforms.",
   },
   {
     q: "How much does smart home automation cost?",
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                   whileHover={{ scale: 1.05 }}
                   className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center"
                 >
-                  Request Demo →
+                  Learn More →
                 </motion.a>
               </div>
             </motion.div>

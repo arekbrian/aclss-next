@@ -1,15 +1,20 @@
 "use client"
+
 import { notFound } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useState, use } from "react" // ✅ include use()
 import { FaChevronRight } from "react-icons/fa6"
 import products from "@/data/products"
 
 export default function ProductDetail({ params }) {
-  // ✅ Hooks must always run first
+  // ✅ unwrap the params Promise (Next.js 15+)
+  const resolvedParams = use(params)
+
+  // ✅ Hooks
   const [showSticky, setShowSticky] = useState(false)
+  const [related, setRelated] = useState([])
 
   useEffect(() => {
     const handleScroll = () => setShowSticky(window.scrollY > 200)
@@ -17,17 +22,20 @@ export default function ProductDetail({ params }) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // ✅ Lookup product after hooks
-  const product = products.find((p) => p.key === params.slug)
+  // ✅ Find product
+  const product = products.find((p) => p.key === resolvedParams.slug)
   if (!product) return notFound()
 
-  // ✅ Related products
-  const related = products
-    .filter((p) => p.key !== product.key)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3)
+  // ✅ Related products (client-side randomization to avoid hydration mismatch)
+  useEffect(() => {
+    const randomized = products
+      .filter((p) => p.key !== product.key)
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 3)
+    setRelated(randomized)
+  }, [product.key])
 
-  // ✅ Structured Data
+  // ✅ Structured data for SEO
   const structuredData = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -48,13 +56,13 @@ export default function ProductDetail({ params }) {
 
   return (
     <>
-      {/* ✅ Inject JSON-LD Structured Data */}
+      {/* ✅ JSON-LD for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section className="relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-20 text-center px-6">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -124,13 +132,27 @@ export default function ProductDetail({ params }) {
               ))}
             </ul>
 
+            {/* ✅ BUTTONS */}
             <div className="mt-8 flex gap-4 flex-wrap">
+              {/* Custom “More on” button */}
+              {product.button && (
+                <Link
+                  href={product.button.href}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
+                >
+                  {product.button.label}
+                </Link>
+              )}
+
+              {/* Contact Sales */}
               <Link
                 href="/contact"
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
               >
                 Contact Sales
               </Link>
+
+              {/* Back to Products */}
               <Link
                 href="/products"
                 className="bg-gray-200 text-blue-600 px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-300 transition"
@@ -184,7 +206,7 @@ export default function ProductDetail({ params }) {
         </div>
       </section>
 
-      {/* STICKY CTA (Mobile Only) */}
+      {/* STICKY CTA (Mobile) */}
       {showSticky && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
