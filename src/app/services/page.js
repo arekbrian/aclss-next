@@ -275,7 +275,7 @@ export default function ServicesPage() {
           <a
             href="/company-profile.pdf"
             download
-            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-500 transition"
+            className="bg-yellow-200 text-gray-900 px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-500 transition"
           >
             📄 Download Profile
           </a>
