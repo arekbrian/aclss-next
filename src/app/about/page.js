@@ -80,7 +80,7 @@ export default function AboutPage() {
             className="rounded-xl overflow-hidden shadow-xl"
           >
             <Image
-              src="/about-team.jpg"
+              src="/about-us.jpg"
               alt="Our Team at ACLSS"
               width={600}
               height={400}
