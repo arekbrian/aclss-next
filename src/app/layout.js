@@ -2,7 +2,8 @@
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Toaster } from "react-hot-toast" // ✅ Toast provider
+import { Toaster } from "react-hot-toast"
+import { SpeedInsights } from "@vercel/speed-insights/next" // ✅ Added
 
 export const metadata = {
   title: {
@@ -18,7 +19,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@aclss", // update if you have a handle
+    site: "@aclss",
     creator: "@aclss",
   },
 }
@@ -28,21 +29,27 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="font-sans bg-gray-50 text-gray-900 relative">
         <Header />
-        {/* Add top padding to push content below navbar */}
+
+        {/* ✅ Main content */}
         <main className="min-h-screen pt-28">{children}</main>
+
         <Footer />
-        {/* ✅ Toast container */}
+
+        {/* ✅ Toast Notifications */}
         <Toaster
           position="top-right"
           toastOptions={{
             success: {
-              style: { background: "#10B981", color: "#fff" }, // green success
+              style: { background: "#10B981", color: "#fff" },
             },
             error: {
-              style: { background: "#EF4444", color: "#fff" }, // red error
+              style: { background: "#EF4444", color: "#fff" },
             },
           }}
         />
+
+        {/* ✅ Vercel Speed Insights (performance analytics) */}
+        <SpeedInsights />
       </body>
     </html>
   )
