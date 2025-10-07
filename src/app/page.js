@@ -81,7 +81,7 @@ export default function Home() {
           >
             <div className="keen-slider__slide">
               <Image
-                src="/carousel1.jpg"
+                src="/smart-home/smart.jpg"
                 alt="Smart Home 1"
                 width={800}
                 height={500}
@@ -91,7 +91,7 @@ export default function Home() {
             </div>
             <div className="keen-slider__slide">
               <Image
-                src="/carousel2.jpg"
+                src="/energy-saving.webp"
                 alt="Smart Home 2"
                 width={800}
                 height={500}
@@ -100,7 +100,7 @@ export default function Home() {
             </div>
             <div className="keen-slider__slide">
               <Image
-                src="/carousel3.jpg"
+                src="/smart-lighting.jpg"
                 alt="Smart Home 3"
                 width={800}
                 height={500}
@@ -194,7 +194,7 @@ export default function Home() {
                 K-BUS smart control system, delivering an energy-saving,
                 customizable, and stable lighting environment.
               </p>
-              <Link href="/services" className="text-blue-600 font-medium hover:underline">
+              <Link href="/smart-lighting" className="text-blue-600 font-medium hover:underline">
                 Learn More →
               </Link>
             </motion.div>
@@ -211,7 +211,7 @@ export default function Home() {
                 high performance and cost-effectiveness backed by a diverse product
                 portfolio.
               </p>
-              <Link href="/services" className="text-blue-600 font-medium hover:underline">
+              <Link href="/smart-video-intercoms" className="text-blue-600 font-medium hover:underline">
                 Learn More →
               </Link>
             </motion.div>
@@ -255,7 +255,7 @@ export default function Home() {
             className="rounded-xl overflow-hidden shadow-xl"
           >
             <Image
-              src="/about-preview.jpg"
+              src="/about-us.jpg"
               alt="About ACLSS"
               width={600}
               height={400}
