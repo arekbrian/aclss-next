@@ -4,38 +4,46 @@ import { notFound } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState, use } from "react" // ✅ include use()
+import { useEffect, useState, use } from "react"
 import { FaChevronRight } from "react-icons/fa6"
 import products from "@/data/products"
 
 export default function ProductDetail({ params }) {
-  // ✅ unwrap the params Promise (Next.js 15+)
   const resolvedParams = use(params)
 
-  // ✅ Hooks
   const [showSticky, setShowSticky] = useState(false)
   const [related, setRelated] = useState([])
+  const [product, setProduct] = useState(null)
 
+  // ✅ Set product once params resolve
+  useEffect(() => {
+    const found = products.find((p) => p.key === resolvedParams.slug)
+    setProduct(found || null)
+  }, [resolvedParams.slug])
+
+  // ✅ Scroll handler
   useEffect(() => {
     const handleScroll = () => setShowSticky(window.scrollY > 200)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // ✅ Find product
-  const product = products.find((p) => p.key === resolvedParams.slug)
+  // ✅ Related products
+  useEffect(() => {
+    if (product) {
+      const randomized = products
+        .filter((p) => p.key !== product.key)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3)
+      setRelated(randomized)
+    }
+  }, [product])
+
+  // ✅ If no product found after mounting
+  if (product === null) return null
   if (!product) return notFound()
 
-  // ✅ Related products (client-side randomization to avoid hydration mismatch)
-  useEffect(() => {
-    const randomized = products
-      .filter((p) => p.key !== product.key)
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 3)
-    setRelated(randomized)
-  }, [product.key])
-
-  // ✅ Structured data for SEO
+  // ✅ Structured data
   const structuredData = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -56,13 +64,13 @@ export default function ProductDetail({ params }) {
 
   return (
     <>
-      {/* ✅ JSON-LD for SEO */}
+      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section className="relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-20 text-center px-6">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -100,7 +108,6 @@ export default function ProductDetail({ params }) {
       {/* PRODUCT DETAIL */}
       <section className="py-20 bg-gray-50 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* IMAGE */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -116,7 +123,6 @@ export default function ProductDetail({ params }) {
             />
           </motion.div>
 
-          {/* CONTENT */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -132,9 +138,7 @@ export default function ProductDetail({ params }) {
               ))}
             </ul>
 
-            {/* ✅ BUTTONS */}
             <div className="mt-8 flex gap-4 flex-wrap">
-              {/* Custom “More on” button */}
               {product.button && (
                 <Link
                   href={product.button.href}
@@ -144,7 +148,6 @@ export default function ProductDetail({ params }) {
                 </Link>
               )}
 
-              {/* Contact Sales */}
               <Link
                 href="/contact"
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
@@ -152,7 +155,6 @@ export default function ProductDetail({ params }) {
                 Contact Sales
               </Link>
 
-              {/* Back to Products */}
               <Link
                 href="/products"
                 className="bg-gray-200 text-blue-600 px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-300 transition"
@@ -206,7 +208,7 @@ export default function ProductDetail({ params }) {
         </div>
       </section>
 
-      {/* STICKY CTA (Mobile) */}
+      {/* STICKY CTA */}
       {showSticky && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
