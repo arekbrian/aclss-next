@@ -40,7 +40,7 @@ export async function POST(request) {
     const fromEmail = process.env.FROM_EMAIL || user
 
     if (!host || !port || !user || !pass || !adminEmail) {
-      console.error("❌ SMTP env vars missing")
+      console.error("SMTP env vars missing")
       return NextResponse.json(
         { error: "Mail server not configured. Check environment variables." },
         { status: 500 }
@@ -60,7 +60,7 @@ export async function POST(request) {
       await transporter.verify()
       console.log("✅ SMTP server is ready to take messages")
     } catch (verifyErr) {
-      console.error("❌ SMTP connection failed:", verifyErr)
+      console.error("SMTP connection failed:", verifyErr)
       return NextResponse.json({ error: "SMTP connection failed" }, { status: 500 })
     }
 
@@ -112,7 +112,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error("❌ Error in /api/contact:", err)
+    console.error("Error in /api/contact:", err)
     return NextResponse.json({ error: "Error sending message" }, { status: 500 })
   }
 }
