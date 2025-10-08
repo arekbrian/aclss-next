@@ -55,6 +55,15 @@ export async function POST(request) {
       auth: { user, pass },
     })
 
+    // ✅ Test SMTP connection
+    try {
+      await transporter.verify()
+      console.log("✅ SMTP server is ready to take messages")
+    } catch (verifyErr) {
+      console.error("❌ SMTP connection failed:", verifyErr)
+      return NextResponse.json({ error: "SMTP connection failed" }, { status: 500 })
+    }
+
     // ✅ Styled Admin Notification
     const adminSubject = `📩 Contact Form: ${name} — ACL Smart Solutions`
     const adminHtml = `
