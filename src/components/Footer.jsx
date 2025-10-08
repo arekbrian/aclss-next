@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <h3 className="text-white font-semibold mb-3">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              {["Home", "About Us", "Services", "Contact"].map((link, idx) => {
+              {["Home", "About", "Services", "Contact"].map((link, idx) => {
                 const href =
                   link === "Home"
                     ? "/"
