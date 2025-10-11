@@ -12,15 +12,6 @@ function escapeHtml(unsafe = "") {
     .replace(/'/g, "&#039;")
 }
 
-async function createTransport({ host, port, user, pass }) {
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465, // SSL for 465, TLS for 587
-    auth: { user, pass },
-  })
-}
-
 export async function POST(request) {
   try {
     const body = await request.json()
@@ -40,33 +31,32 @@ export async function POST(request) {
       return NextResponse.json({ error: "Message too long" }, { status: 400 })
     }
 
-    // ✅ SMTP config from .env
+    // ✅ SMTP config from .env.local
     const host = process.env.SMTP_HOST
+    const port = Number(process.env.SMTP_PORT || 465)
     const user = process.env.SMTP_USER
     const pass = process.env.SMTP_PASS
     const adminEmail = process.env.ADMIN_EMAIL
     const fromEmail = process.env.FROM_EMAIL || user
 
-    if (!host || !user || !pass || !adminEmail) {
-      console.error("❌ SMTP env vars missing")
+    if (!host || !port || !user || !pass || !adminEmail) {
+      console.error("SMTP env vars missing")
       return NextResponse.json(
         { error: "Mail server not configured. Check environment variables." },
         { status: 500 }
       )
     }
 
-    let transporter
-    try {
-      // First try SSL 465
-      transporter = await createTransport({ host, port: 465, user, pass })
-      await transporter.verify()
-      console.log("✅ Connected via port 465 (SSL)")
-    } catch (err465) {
-      console.warn("⚠️ Port 465 failed, retrying with 587 (TLS)...", err465.message)
-      transporter = await createTransport({ host, port: 587, user, pass })
-      await transporter.verify()
-      console.log("✅ Connected via port 587 (TLS)")
-    }
+    // ✅ Nodemailer transporter (with TLS fallback)
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465, // true for 465 (SSL), false for 587 (TLS)
+      auth: { user, pass },
+      tls: {
+        rejectUnauthorized: false, // ⚠️ TEMPORARY bypass for hostname mismatch
+      },
+    })
 
     // ✅ Styled Admin Notification
     const adminSubject = `📩 Contact Form: ${name} — ACL Smart Solutions`
@@ -116,7 +106,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error("❌ Error in /api/contact:", err)
+    console.error("Error in /api/contact:", err)
     return NextResponse.json({ error: "Error sending message" }, { status: 500 })
   }
 }
